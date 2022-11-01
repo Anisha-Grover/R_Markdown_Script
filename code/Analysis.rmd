@@ -1,0 +1,55 @@
+---
+title: "Analysis"
+author: "Anisha Grover"
+date: '2022-11-01'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Import Libraries
+
+
+```{r}
+library(tidyverse)
+```
+
+
+
+## Import and summarize data
+
+```{r}
+data = read_csv('/Users/anisha/Dropbox/My Mac (Anishas-MacBook-Air.local)/Desktop/R_Markdown_Script/data/data.csv')
+
+head(data)
+```
+
+
+```{r}
+summary(data)
+```
+
+
+Scatter plot of y against x.
+
+```{r scatter_plot}
+data %>% ggplot(aes(x = x, y = y)) +
+  geom_point(colour = 'green', shape = 1) +
+  labs(x = 'Normal Random Variable', y = 'Uniform Random Variable',
+       title = 'Scatter plot of Uniform Random against Normal Random')
+```
+
+
+Regress Uniform random variable 'y' on Normal random variable.
+
+```{r reg_basic}
+reg_basic = lm(y ~ x, data = data )
+summary(reg_basic)
+```
+
+
+
+
